@@ -1,8 +1,8 @@
-const fs = require("fs");
+const fs = require("fs").promises;
 const path = require("path");
 const { nanoid } = require("nanoid");
 
-const contactsPath = path.join(__dirname, "/db/contact.json");
+const contactsPath = path.join(__dirname, "/db/contacts.json");
 
 async function listContacts() {
   try {
@@ -39,6 +39,7 @@ async function removeContact(contactId) {
       if (err) console.log(err);
     });
     console.log(`contact: ${contactId} was deleted from Contact List`);
+    listContacts();
   } catch (error) {
     console.log(error);
   }
